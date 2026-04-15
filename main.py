@@ -3,7 +3,8 @@ import datetime as dt
 import random
 import smtplib
 import os
-
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
 import pandas as pd
 # 1. Update the birthdays.csv with your friends & family's details. 
@@ -23,8 +24,8 @@ if (current_date.month, current_date.day) in dist:
     with smtplib.SMTP('smtp.gmail.com', 587) as connection:
 
         connection.starttls()
-        connection.login("nirjalamaharjan72@gmail.com", "wgpb ovcz mjem oerc")
-        connection.sendmail(from_addr="nirjalamaharjan72@gmail.com", to_addrs=birthday_person['email'], msg=f'Subject: Happy Birthday \n\n {birthday_letter}' )
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL, to_addrs=birthday_person['email'], msg=f'Subject: Happy Birthday \n\n {birthday_letter}' )
 
 
 # 2. Check if today matches a birthday in the birthdays.csv
